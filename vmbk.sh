@@ -10,7 +10,7 @@ KEEP=$3
 #config variables
 WAIT=12 #5sec cycles to wait for vm to shutdown. Default: 12 (1min)
 RETRY=1 #times to retry sending vm.stop if the vm is still running Default: 1
-SNAP_NAME="vmbk" #common part of snapshot name. Default "vmdk"
+SNAP_NAME="vmbk" #common part of snapshot name. Default "vmbk"
 
 RC=$(zfs list $DATASET)
 
