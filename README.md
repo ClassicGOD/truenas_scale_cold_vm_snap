@@ -3,6 +3,7 @@
 This is an amalgam of [script](https://www.truenas.com/community/threads/backup-bhyve-windows-vm.85705/post-601264) by user [bal0an](https://www.truenas.com/community/members/bal0an.22184/) from TrueNas community forums and an elegent command [sugested on serverfault.com](https://serverfault.com/a/340846) with few of my own modifications. So 99% of the credit goes to the folks above. 
 
 Features:
+* [new] if <vm_dataset> parameter is set to auto script will atempt to detect all DISK devices in VM config and use them as snapshot targets.
 * Stops VM before creating a snapshot
   * If VM does not stop in specified time (can be configured in file) retries sending vm.stop
   * Number of retries can be configured in file (1 by default)
@@ -36,4 +37,34 @@ null
 will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-09_13-35
 will reclaim 4.12M
 2021-12-09 14:12:59 Done.
+```
+
+Example with auto zvol detection:
+```
+./vmbk.sh arch auto 2
+```
+
+Example Output with auto zvol detection:
+```
+2021-12-12 14:02:02 VM arch has id 3.
+2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch-4mspi for VM arch.
+2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch_test for VM arch.
+2021-12-12 14:02:02 VM arch not running.
+2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-02.
+2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch_test@vmbk-2021-12-12_14-02.
+2021-12-12 14:02:02 Destroying older snapshoots of dataset nvme_pool/data/vm/arch-4mspi. Keeping 2 latest.
+will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-00
+will reclaim 0B
+will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-59
+will reclaim 0B
+will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-58
+will reclaim 0B
+2021-12-12 14:02:03 Destroying older snapshoots of dataset nvme_pool/data/vm/arch_test. Keeping 2 latest.
+will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_14-00
+will reclaim 112K
+will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_13-59
+will reclaim 160K
+will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_13-58
+will reclaim 532K
+2021-12-12 14:02:04 Done.
 ```
