@@ -7,8 +7,8 @@ Features:
 * Stops VM before creating a snapshot
   * If VM does not stop in specified time (can be configured in file) retries sending vm.stop
   * Number of retries can be configured in file (1 by default)
-  * If VM does not stop, aborts
-* Restarts VM after creating one
+  * If VM does not stop, script aborts
+* Restarts VM after creating snapshot if the VM was running when the script was launched
 * Removes oldest snapshots leaving only specified number of most recent ones.
 * Common part of snapshot names can be configured in file "vmdk" by default
 
