@@ -70,3 +70,12 @@ will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-58
 will reclaim 532K
 2021-12-12 14:02:04 Done.
 ```
+
+# Installation
+
+```
+wget https://raw.githubusercontent.com/ClassicGOD/truenas_scale_cold_vm_snap/main/vmbk.sh
+chmod +x vmbk.sh
+```
+Example Cron Job setup:
+![Example Chron Job](/images/vmbk_cron_job_example.jpg)
