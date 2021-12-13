@@ -1,4 +1,9 @@
 #!/bin/bash
+#config variables
+WAIT=20 #5sec cycles to wait for vm to shutdown. Default: 20 (1min 40s)
+RETRY=1 #times to retry sending vm.stop if the vm is still running Default: 1
+SNAP_NAME="vmbk" #common part of snapshot name. Default "vmbk"
+
 if [ $# -ne 2 ] && [ $# -ne 3 ]; then
     echo "Usage: vmbk.sh <vm_name> <dataset> [snapshots_to_keep]"
     echo "Info: if <dataset> is set to auto snapshot of all DISK devices for the VM will be taken."
@@ -7,11 +12,6 @@ fi
 VM_NAME=$1
 DATASET=$2
 KEEP=$3
-
-#config variables
-WAIT=12 #5sec cycles to wait for vm to shutdown. Default: 12 (1min)
-RETRY=1 #times to retry sending vm.stop if the vm is still running Default: 1
-SNAP_NAME="vmbk" #common part of snapshot name. Default "vmdk"
 
 VM_ID=$(midclt call vm.query | jq ".[] | if .name == \"$VM_NAME\" then .id else empty end")
 if [ "$VM_ID" == "" ]; then
