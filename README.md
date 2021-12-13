@@ -80,3 +80,5 @@ chmod +x vmbk.sh
 Example Cron Job setup:
 
 ![Example Cron Job](/images/vmbk_cron_job_example.jpg)
+
+<img src="https://github.com/favicon.ico" width="48">
