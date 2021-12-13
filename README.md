@@ -10,7 +10,7 @@ Features:
   * If VM does not stop, script aborts
 * Restarts VM after creating snapshot if the VM was running when the script was launched
 * Removes oldest snapshots leaving only specified number of most recent ones.
-* Common part of snapshot names can be configured in file "vmdk" by default
+* Common part of snapshot names can be configured in file "vmbk" by default
 
 # Usage
 ```
