@@ -73,8 +73,10 @@ will reclaim 532K
 
 # Installation
 
-```
+```bash
 wget https://raw.githubusercontent.com/ClassicGOD/truenas_scale_cold_vm_snap/main/vmbk.sh
+```
+```bash
 chmod +x vmbk.sh
 ```
 Example Cron Job setup:
