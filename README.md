@@ -18,7 +18,7 @@ Features:
 ```
 
 Example:
-```
+```sh
 ./vmbk.sh large_dockie nvme_pool/data/vm/large_dockie-reum7yp 4
 ```
 
