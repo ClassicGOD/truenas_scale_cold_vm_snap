@@ -81,4 +81,4 @@ Example Cron Job setup:
 
 ![Example Cron Job](/images/vmbk_cron_job_example.jpg)
 
-<img src="https://github.com/favicon.ico" width="48">
+<img src="/images/vmbk_cron_job_example.jpg" width="48">
