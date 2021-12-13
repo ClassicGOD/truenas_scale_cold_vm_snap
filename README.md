@@ -79,6 +79,4 @@ chmod +x vmbk.sh
 ```
 Example Cron Job setup:
 
-![Example Cron Job](/images/vmbk_cron_job_example.jpg)
-
-<img src="/images/vmbk_cron_job_example.jpg" width="48">
+<img src="/images/vmbk_cron_job_example.jpg" width="500">
