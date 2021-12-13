@@ -73,7 +73,7 @@ will reclaim 532K
 
 # Installation
 
-```bash
+```shellscript
 wget https://raw.githubusercontent.com/ClassicGOD/truenas_scale_cold_vm_snap/main/vmbk.sh
 ```
 ```bash
