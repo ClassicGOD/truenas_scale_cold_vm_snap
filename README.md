@@ -50,10 +50,10 @@ Example Output with auto zvol detection:
 ```
 2021-12-12 14:02:02 VM arch has id 3.
 2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch-4mspi for VM arch.
-2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch_test for VM arch.
+2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch-test for VM arch.
 2021-12-12 14:02:02 VM arch not running.
 2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-02.
-2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch_test@vmbk-2021-12-12_14-02.
+2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-02.
 2021-12-12 14:02:02 Destroying older snapshoots of dataset nvme_pool/data/vm/arch-4mspi. Keeping 2 latest.
 will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-00
 will reclaim 0B
@@ -61,12 +61,12 @@ will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-59
 will reclaim 0B
 will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-58
 will reclaim 0B
-2021-12-12 14:02:03 Destroying older snapshoots of dataset nvme_pool/data/vm/arch_test. Keeping 2 latest.
-will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_14-00
+2021-12-12 14:02:03 Destroying older snapshoots of dataset nvme_pool/data/vm/arch-test. Keeping 2 latest.
+will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-00
 will reclaim 112K
-will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_13-59
+will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-59
 will reclaim 160K
-will destroy nvme_pool/data/vm/arch_test@vmbk-2021-12-12_13-58
+will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-58
 will reclaim 532K
 2021-12-12 14:02:04 Done.
 ```
