@@ -19,24 +19,26 @@ Features:
 
 Example:
 ```
-./vmbk.sh large_dockie nvme_pool/data/vm/large_dockie-reum7yp 7
+./vmbk.sh large_dockie nvme_pool/data/vm/large_dockie-reum7yp 4
 ```
 
 Example Output:
 ```
-2021-12-09 14:12:49 Taking snapshot of nvme_pool/data/vm/large_dockie-reum7yp for VM large_dockie.
-2021-12-09 14:12:49 vm large_dockie has id 1.
-2021-12-09 14:12:49 Shutting down VM large_dockie...
-5435
-2021-12-09 14:12:50 Wait for vm large_dockie to terminate...(1/12)
-2021-12-09 14:12:55 vm large_dockie stopped
-2021-12-09 14:12:55 Taking snapshot nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-09_14-12
-2021-12-09 14:12:55 Starting up VM large_dockie
+2021-12-13 12:23:23 VM large_dockie has id 1.
+2021-12-13 12:23:23 Will take snapshot of nvme_pool/data/vm/large_dockie-reum7yp for VM large_dockie.
+2021-12-13 12:23:23 Shutting down VM large_dockie...
+5624
+2021-12-13 12:23:24 Wait for VM large_dockie to terminate...(1/12)
+2021-12-13 12:23:29 VM large_dockie stopped.
+2021-12-13 12:23:29 Taking snapshot nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-13_12-23.
+2021-12-13 12:23:29 Starting up VM large_dockie.
 null
-2021-12-09 14:12:58 Destroying older snapshoots. Keeping 7 latest.
-will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-09_13-35
-will reclaim 4.12M
-2021-12-09 14:12:59 Done.
+2021-12-13 12:23:32 Destroying older snapshoots of dataset nvme_pool/data/vm/large_dockie-reum7yp. Keeping 4 latest.
+will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_14-10
+will reclaim 3.93M
+will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_02-00
+will reclaim 17.6M
+2021-12-13 12:23:33 Done.
 ```
 
 Example with auto zvol detection:
