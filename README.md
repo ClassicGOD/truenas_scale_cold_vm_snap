@@ -78,4 +78,5 @@ wget https://raw.githubusercontent.com/ClassicGOD/truenas_scale_cold_vm_snap/mai
 chmod +x vmbk.sh
 ```
 Example Cron Job setup:
-![Example Chron Job](/images/vmbk_cron_job_example.jpg)
+
+![Example Cron Job](/images/vmbk_cron_job_example.jpg)
