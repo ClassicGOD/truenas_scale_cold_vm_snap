@@ -13,7 +13,7 @@ Features:
 * Common part of snapshot names can be configured in file "vmbk" by default
 
 # Usage
-```
+```sh
 ./vmbk.sh <vm_name> <vm_dataset> [number_of_snapshots_to_keep]
 ```
 
