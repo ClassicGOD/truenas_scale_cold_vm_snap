@@ -13,12 +13,12 @@ Features:
 * Common part of snapshot names can be configured in file "vmbk" by default
 
 # Usage
-```sh
+```
 ./vmbk.sh <vm_name> <vm_dataset> [number_of_snapshots_to_keep]
 ```
 
 Example:
-```sh
+```
 ./vmbk.sh large_dockie nvme_pool/data/vm/large_dockie-reum7yp 4
 ```
 
@@ -73,10 +73,10 @@ will reclaim 532K
 
 # Installation
 
-```console
+```
 wget https://raw.githubusercontent.com/ClassicGOD/truenas_scale_cold_vm_snap/main/vmbk.sh
 ```
-```console
+```
 chmod +x vmbk.sh
 ```
 Example Cron Job setup:
