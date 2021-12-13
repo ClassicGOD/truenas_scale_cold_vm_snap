@@ -80,3 +80,7 @@ chmod +x vmbk.sh
 Example Cron Job setup:
 
 <img src="/images/vmbk_cron_job_example.jpg" width="500">
+
+Example Replication setup:
+
+<img src="/images/vmbk_replication_example.jpg" width="500">
