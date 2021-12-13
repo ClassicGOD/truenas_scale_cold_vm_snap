@@ -29,7 +29,6 @@ fi
 
 echo "$DATASETS" | while read DATASET ; do
     RC=$(zfs list $DATASET)
-
     if [ $? -eq 1 ]; then
         echo "Error: Dataset $DATASET not found. Aborting."
         exit 1
@@ -65,7 +64,7 @@ if [ "$VM_STATE" != "\"STOPPED\"" ]; then
     done
     echo $(date '+%Y-%m-%d %H:%M:%S') "VM $VM_NAME stopped."
 else
-    echo $(date '+%Y-%m-%d %H:%M:%S') "VM $VM_NAME not running."
+    echo $(date '+%Y-%m-%d %H:%M:%S') "VM $VM_NAME is not running."
 fi
 
 echo "$DATASETS" | while read DATASET ; do
