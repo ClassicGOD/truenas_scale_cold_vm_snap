@@ -33,7 +33,7 @@ Example Output:
 2021-12-13 12:23:29 Taking snapshot nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-13_12-23.
 2021-12-13 12:23:29 Starting up VM large_dockie.
 null
-2021-12-13 12:23:32 Destroying older snapshoots of dataset nvme_pool/data/vm/large_dockie-reum7yp. Keeping 4 latest.
+2021-12-13 12:23:32 Destroying older snapshots of dataset nvme_pool/data/vm/large_dockie-reum7yp. Keeping 4 latest.
 will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_14-10
 will reclaim 3.93M
 will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_02-00
@@ -61,7 +61,7 @@ will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-59
 will reclaim 0B
 will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-58
 will reclaim 0B
-2021-12-12 14:02:03 Destroying older snapshoots of dataset nvme_pool/data/vm/arch-test. Keeping 2 latest.
+2021-12-12 14:02:03 Destroying older snapshots of dataset nvme_pool/data/vm/arch-test. Keeping 2 latest.
 will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-00
 will reclaim 112K
 will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-59
