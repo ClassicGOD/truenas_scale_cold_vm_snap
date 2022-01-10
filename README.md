@@ -54,7 +54,7 @@ Example Output with auto zvol detection:
 2021-12-12 14:02:02 VM arch not running.
 2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-02.
 2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-02.
-2021-12-12 14:02:02 Destroying older snapshoots of dataset nvme_pool/data/vm/arch-4mspi. Keeping 2 latest.
+2021-12-12 14:02:02 Destroying older snapshots of dataset nvme_pool/data/vm/arch-4mspi. Keeping 2 latest.
 will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-00
 will reclaim 0B
 will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-59
