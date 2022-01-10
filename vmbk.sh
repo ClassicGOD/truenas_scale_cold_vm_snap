@@ -81,7 +81,7 @@ fi
 KEEP_TAIL=$((KEEP+1))
 if [ "$KEEP_TAIL" -gt "1" ]; then
     echo "$DATASETS" | while read DATASET ; do
-        echo $(date '+%Y-%m-%d %H:%M:%S') "Destroying older snapshoots of dataset $DATASET. Keeping $KEEP latest."
+        echo $(date '+%Y-%m-%d %H:%M:%S') "Destroying older snapshots of dataset $DATASET. Keeping $KEEP latest."
         SNAP_TO_DESTROY=$(zfs list -t snapshot -o name -S creation | grep "^$DATASET@$SNAP_NAME" | tail -n +$KEEP_TAIL)
         if [ "$SNAP_TO_DESTROY" == "" ]; then
              echo $(date '+%Y-%m-%d %H:%M:%S') "No snapshots to destroy."
