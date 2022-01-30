@@ -90,11 +90,11 @@ echo $(date '+%H:%M:%S') "[Info] VMBK starting" $(date '+%Y-%m-%d %H:%M:%S')
 # Get VM id
 VM_ID=$(midclt call vm.query | jq ".[] | if .name == \"$VM_NAME\" then .id else empty end")
 if [ "$VM_ID" == "" ]; then
-    echo $(date '+%H:%M:%S') "[Error] VM '$VM_NAME' not found"
+    echo $(date '+%H:%M:%S') "[Error] VM $VM_NAME not found"
     exit 1
 fi
 
-echo $(date '+%H:%M:%S') "[Info] '$VM_NAME' has id '$VM_ID'"
+echo $(date '+%H:%M:%S') "[Info] $VM_NAME has id $VM_ID"
 
 # Get dataset list if not provided
 if [ "$DATASETS" == "" ]; then
@@ -105,10 +105,10 @@ fi
 echo "$DATASETS" | while read DATASET ; do
     RC=$(zfs list $DATASET 2> /dev/null 1> /dev/null)
     if [ $? -eq 1 ] ; then
-        echo  $(date '+%H:%M:%S') "[Error] dataset '$DATASET' not found"
+        echo  $(date '+%H:%M:%S') "[Error] dataset $DATASET not found"
 	exit 1
     fi
-    echo $(date '+%H:%M:%S') "[Info] dataset to snapshot: '$DATASET'"
+    echo $(date '+%H:%M:%S') "[Info] dataset to snapshot: $DATASET"
 done
 
 if [ $? -eq 1 ] ; then
@@ -120,7 +120,7 @@ VM_STATE=$(midclt call vm.status $VM_ID | jq '.state')
 
 # Shutdown VM if it's running
 if [ "$VM_STATE" != "\"STOPPED\"" ]; then
-    midclt call vm.stop $VM_ID | xargs echo $(date '+%H:%M:%S') "[Info] shutting down '$VM_NAME'"
+    midclt call vm.stop $VM_ID | xargs echo $(date '+%H:%M:%S') "[Info] shutting down $VM_NAME"
 
     WAIT_COUNTER=0
     RETRY_COUNTER=0
@@ -132,20 +132,20 @@ if [ "$VM_STATE" != "\"STOPPED\"" ]; then
             if [ "$RETRY_COUNTER" -lt "$RETRY_COUNT" ]; then
                 RETRY_COUNT=$((RETRY_COUNT+1))
                 WAIT_COUNTER=1
-                echo $(date '+%H:%M:%S') "[Info] '$VM_NAME' still running. Retrying ($RETRY_COUNTER/$RETRY_COUNT)"
-                midclt call vm.stop $VM_ID | xargs echo $(date '+%H:%M:%S') "[Info] shutting down '$VM_NAME'."
+                echo $(date '+%H:%M:%S') "[Info] $VM_NAME still running. Retrying ($RETRY_COUNTER/$RETRY_COUNT)"
+                midclt call vm.stop $VM_ID | xargs echo $(date '+%H:%M:%S') "[Info] shutting down $VM_NAME."
             else
-                echo $(date '+%H:%M:%S') "[Error] Failed to stop '$VM_NAME'."
+                echo $(date '+%H:%M:%S') "[Error] Failed to stop $VM_NAME."
                 exit 1
             fi
         fi
 
-        echo $(date '+%H:%M:%S') "[Info] waiting for '$VM_NAME' to shutdown...($WAIT_COUNTER/$WAIT_COUNT)"
+        echo $(date '+%H:%M:%S') "[Info] waiting for $VM_NAME to shutdown...($WAIT_COUNTER/$WAIT_COUNT)"
         sleep $CHECK_TIME
     done
-    echo $(date '+%H:%M:%S') "[Info] '$VM_NAME' stopped."
+    echo $(date '+%H:%M:%S') "[Info] $VM_NAME stopped."
 else
-    echo $(date '+%H:%M:%S') "[Info] '$VM_NAME' is not running."
+    echo $(date '+%H:%M:%S') "[Info] $VM_NAME is not running."
 fi
 
 # Snapshot datasets on list
@@ -156,7 +156,7 @@ done
 
 # Start the vm if it was not stopped initialy
 if [ "$VM_STATE" != "\"STOPPED\"" ]; then
-    echo $(date '+%H:%M:%S') "[Info] starting '$VM_NAME'"
+    echo $(date '+%H:%M:%S') "[Info] starting $VM_NAME"
     midclt call vm.start $VM_ID > /dev/null
 fi
 
@@ -165,7 +165,7 @@ KEEP_TAIL=$((KEEP_SNAP+1))
 if [ "$KEEP_SNAP" -gt "0" ]; then
     KEEP_TAIL=$((KEEP_SNAP+1))
     echo "$DATASETS" | while read DATASET ; do
-        echo $(date '+%H:%M:%S') "[Info] destroying older snapshots for '$DATASET'"
+        echo $(date '+%H:%M:%S') "[Info] destroying older snapshots for $DATASET"
         echo $(date '+%H:%M:%S') "[Info] keeping $KEEP_SNAP latest"
         SNAPS_TO_DESTROY=$(zfs list -t snapshot -o name -S creation | grep "^$DATASET@$SNAP_NAME" | tail -n +$KEEP_TAIL)
         if [ "$SNAPS_TO_DESTROY" == "" ]; then
