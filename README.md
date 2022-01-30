@@ -34,18 +34,18 @@ Example:
 
 Example Output:
 ```
-19:53:01 [Info] VMBK starting 2022-01-30 19:53:01
-19:53:02 [Info] 'debian_test' has id '6'
-19:53:02 [Info] dataset to snapshot: 'nvme_pool/vm/debian_test-hh8vs5'
-19:53:02 [Info] shutting down 'debian_test' 90640
-19:53:03 [Info] waiting for 'debian_test' to shutdown...(1/20)
-19:53:08 [Info] 'debian_test' stopped.
-19:53:08 [Info] taking snapshot nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_19-53
-19:53:08 [Info] starting 'debian_test'
-19:53:13 [Info] destroying older snapshots for 'nvme_pool/vm/debian_test-hh8vs5'
-19:53:13 [Info] keeping 7 latest
-19:53:14 [Info] will destroy nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_19-51 will reclaim 4.87M
-19:53:14 [Info] done
+19:57:42 [Info] VMBK starting 2022-01-30 19:57:42
+19:57:43 [Info] debian_test has id 6
+19:57:43 [Info] dataset to snapshot: nvme_pool/vm/debian_test-hh8vs5
+19:57:43 [Info] shutting down debian_test 90653
+19:57:43 [Info] waiting for debian_test to shutdown...(1/20)
+19:57:49 [Info] debian_test stopped.
+19:57:49 [Info] taking snapshot nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_19-57
+19:57:49 [Info] starting debian_test
+19:57:54 [Info] destroying older snapshots for nvme_pool/vm/debian_test-hh8vs5
+19:57:54 [Info] keeping 7 latest
+19:57:55 [Info] will destroy nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_18-52 will reclaim 5.32M
+19:57:55 [Info] done
 ```
 
 # Installation
