@@ -1,74 +1,51 @@
 # Script for creating cold snapshots of VMs on TrueNas Scale
 
-This is an amalgam of [script](https://www.truenas.com/community/threads/backup-bhyve-windows-vm.85705/post-601264) by user [bal0an](https://www.truenas.com/community/members/bal0an.22184/) from TrueNas community forums and an elegent command [sugested on serverfault.com](https://serverfault.com/a/340846) with few of my own modifications. So 99% of the credit goes to the folks above. 
+This is an amalgam of [script](https://www.truenas.com/community/threads/backup-bhyve-windows-vm.85705/post-601264) by user [bal0an](https://www.truenas.com/community/members/bal0an.22184/) from TrueNas community forums and an elegent command [sugested on serverfault.com](https://serverfault.com/a/340846) with few of my own modifications. So most of the credit goes to the folks above. 
 
 Features:
-* [new] if <vm_dataset> parameter is set to auto script will atempt to detect all DISK devices in VM config and use them as snapshot targets.
+* if -d option is not set script will atempt to detect all DISK devices in VM config and use them as snapshot targets.
 * Stops VM before creating a snapshot
   * If VM does not stop in specified time (can be configured in file) retries sending vm.stop
-  * Number of retries can be configured in file (1 by default)
+  * Number of retries can be configurad with -r option (default 1)
   * If VM does not stop, script aborts
 * Restarts VM after creating snapshot if the VM was running when the script was launched
 * Removes oldest snapshots leaving only specified number of most recent ones.
-* Common part of snapshot names can be configured in file "vmbk" by default
+* Common part of snapshot names can be configured with -n option "vmbk" by default
 
 # Usage
 ```
-./vmbk.sh <vm_name> <vm_dataset> [number_of_snapshots_to_keep]
+Usage: vmbk.sh [OPTIONS] VM_NAME
+
+ Option                 Meaning
+ -d <dataset>           Dataset to backup. Setting -d diables automatic dataset detection.
+                        (use multiple -d options for multiple datasets)
+ -h                     Display this message
+ -k <number>            Number of latest shapshots to keep. (default: unlimited)
+ -n <name>              Common part of snapshot name. (default: vmbk)
+ -r <number>            Number of retries to shut the vm down before giving up. (default: 1)
+ -t <number>            Time between vm status checks in sec. (default: 5)
+ -w <number>            Number of status checks while waiting for vm to shut down (default: 20)
 ```
 
 Example:
 ```
-./vmbk.sh large_dockie nvme_pool/data/vm/large_dockie-reum7yp 4
+./vmbk.sh -k 7 debian_test
 ```
 
 Example Output:
 ```
-2021-12-13 12:23:23 VM large_dockie has id 1.
-2021-12-13 12:23:23 Will take snapshot of nvme_pool/data/vm/large_dockie-reum7yp for VM large_dockie.
-2021-12-13 12:23:23 Shutting down VM large_dockie...
-5624
-2021-12-13 12:23:24 Wait for VM large_dockie to terminate...(1/12)
-2021-12-13 12:23:29 VM large_dockie stopped.
-2021-12-13 12:23:29 Taking snapshot nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-13_12-23.
-2021-12-13 12:23:29 Starting up VM large_dockie.
-null
-2021-12-13 12:23:32 Destroying older snapshots of dataset nvme_pool/data/vm/large_dockie-reum7yp. Keeping 4 latest.
-will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_14-10
-will reclaim 3.93M
-will destroy nvme_pool/data/vm/large_dockie-reum7yp@vmbk-2021-12-12_02-00
-will reclaim 17.6M
-2021-12-13 12:23:33 Done.
-```
-
-Example with auto zvol detection:
-```
-./vmbk.sh arch auto 2
-```
-
-Example Output with auto zvol detection:
-```
-2021-12-12 14:02:02 VM arch has id 3.
-2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch-4mspi for VM arch.
-2021-12-12 14:02:02 Will take snapshot of nvme_pool/data/vm/arch-test for VM arch.
-2021-12-12 14:02:02 VM arch not running.
-2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-02.
-2021-12-12 14:02:02 Taking snapshot nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-02.
-2021-12-12 14:02:02 Destroying older snapshots of dataset nvme_pool/data/vm/arch-4mspi. Keeping 2 latest.
-will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_14-00
-will reclaim 0B
-will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-59
-will reclaim 0B
-will destroy nvme_pool/data/vm/arch-4mspi@vmbk-2021-12-12_13-58
-will reclaim 0B
-2021-12-12 14:02:03 Destroying older snapshots of dataset nvme_pool/data/vm/arch-test. Keeping 2 latest.
-will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_14-00
-will reclaim 112K
-will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-59
-will reclaim 160K
-will destroy nvme_pool/data/vm/arch-test@vmbk-2021-12-12_13-58
-will reclaim 532K
-2021-12-12 14:02:04 Done.
+19:53:01 [Info] VMBK starting 2022-01-30 19:53:01
+19:53:02 [Info] 'debian_test' has id '6'
+19:53:02 [Info] dataset to snapshot: 'nvme_pool/vm/debian_test-hh8vs5'
+19:53:02 [Info] shutting down 'debian_test' 90640
+19:53:03 [Info] waiting for 'debian_test' to shutdown...(1/20)
+19:53:08 [Info] 'debian_test' stopped.
+19:53:08 [Info] taking snapshot nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_19-53
+19:53:08 [Info] starting 'debian_test'
+19:53:13 [Info] destroying older snapshots for 'nvme_pool/vm/debian_test-hh8vs5'
+19:53:13 [Info] keeping 7 latest
+19:53:14 [Info] will destroy nvme_pool/vm/debian_test-hh8vs5@vmbk-2022-01-30_19-51 will reclaim 4.87M
+19:53:14 [Info] done
 ```
 
 # Installation
