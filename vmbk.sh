@@ -132,15 +132,15 @@ if [ "$VM_STATE" != "\"STOPPED\"" ]; then
             if [ "$RETRY_COUNTER" -lt "$RETRY_COUNT" ]; then
                 RETRY_COUNT=$((RETRY_COUNT+1))
                 WAIT_COUNTER=1
-                echo $(date '+%H:%M:%S') "[Info] $VM_NAME still running. Retrying ($RETRY_COUNTER/$RETRY_COUNT)"
+                echo $(date '+%H:%M:%S') "[Info] $VM_NAME still running - retrying ($RETRY_COUNTER/$RETRY_COUNT)"
                 midclt call vm.stop $VM_ID | xargs echo $(date '+%H:%M:%S') "[Info] shutting down $VM_NAME."
             else
-                echo $(date '+%H:%M:%S') "[Error] Failed to stop $VM_NAME"
+                echo $(date '+%H:%M:%S') "[Error] failed to stop $VM_NAME"
                 exit 1
             fi
         fi
 
-        echo $(date '+%H:%M:%S') "[Info] waiting for $VM_NAME to shutdown...($WAIT_COUNTER/$WAIT_COUNT)"
+        echo $(date '+%H:%M:%S') "[Info] waiting for $VM_NAME to shutdown ($WAIT_COUNTER/$WAIT_COUNT)"
         sleep $CHECK_TIME
     done
     echo $(date '+%H:%M:%S') "[Info] $VM_NAME stopped"
